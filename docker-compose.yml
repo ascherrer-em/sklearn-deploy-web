@@ -6,7 +6,7 @@ services:
     image: sklearn-deploy-web-nginx:1.0
     container_name: sklearn_web_nginx
     volumes:
-      - ./app/static:/home/app/web/project/static
+      - ./frontend/dist:/home/app/web
     ports:
       - 1337:80
     depends_on:
@@ -14,10 +14,10 @@ services:
     networks:
       - sklearn
 
-  web:
+  backend:
     image: sklearn-deploy-web-backend:1.0
-    container_name: intranet_web
-    build: .
+    container_name: sklearn_web_backend
+    build: ./backend
     command: /usr/local/bin/gunicorn -c gunicorn.conf.py app:app --reload
     volumes:
       - ./backend:/usr/src/app
@@ -27,9 +27,5 @@ services:
       - sklearn
 
 networks:
-  intranet_dev:
+  sklearn:
       driver: bridge
-      ipam:
-          driver: default
-          config:
-              - subnet: "172.51.0.0/16"

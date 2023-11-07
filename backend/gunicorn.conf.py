@@ -1,0 +1,9 @@
+bind = "0.0.0.0:5000"
+reload = True
+preload = True
+worker = 1
+worker_connexions = 5
+debug = False
+logfile = "/data/log/gunicorn_debug.log"
+accesslog = "/data/log/gunicorn_access.log"
+timeout = 300
