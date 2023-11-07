@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     getMessage() {
-      const path = "http://backend/ping";
+      const path = "/api/ping";
       this.$http
         .get(path)
         .then((res) => {
