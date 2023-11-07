@@ -13,4 +13,6 @@ RUN pip install -r requirements.txt
 
 COPY ./entrypoint.sh /entrypoint.sh
 
+VOLUME [ "/data" ]
+
 ENTRYPOINT ["/entrypoint.sh"]

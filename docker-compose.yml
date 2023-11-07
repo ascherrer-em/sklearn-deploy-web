@@ -21,6 +21,7 @@ services:
     command: /usr/local/bin/gunicorn -c gunicorn.conf.py app:app --reload
     volumes:
       - ./backend:/usr/src/app
+      - ./log:/data
     expose:
       - 5000
     networks:

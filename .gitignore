@@ -173,3 +173,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+log/*
