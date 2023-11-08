@@ -10,6 +10,8 @@ import './assets/main.css'
 
 const app = createApp(App)
 
+axios.defaults.baseURL = process.env.BACKEND_HOST
+
 app.use(router)
 app.use(VueAxios, axios)
 
