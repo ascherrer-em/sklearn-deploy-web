@@ -24,7 +24,9 @@ services:
         fromService:
           type: web
           name: sklearn-predict-test-api
-          property: connectionString 
+          property: host 
+      - key: RENDER
+        value: true
     headers:
       - path: /*
         name: X-Frame-Options
