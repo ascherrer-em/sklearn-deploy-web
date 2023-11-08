@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd frontend
-yarn build
+docker-compose down 
 
-cd ..
+docker-compose build
+docker-compose run frontend-build yarn
+docker-compose run frontend-build yarn build
+
 docker-compose up -d nginx

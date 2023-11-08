@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # Reverse proxy, to access backend and frontend from the same domain
   nginx:
     build: ./nginx
     image: sklearn-deploy-web-nginx:1.0
@@ -14,6 +15,7 @@ services:
     networks:
       - sklearn
 
+  # Backend: run the model and give back predictions
   backend:
     image: sklearn-deploy-web-backend:1.0
     container_name: sklearn_web_backend
@@ -26,6 +28,15 @@ services:
       - 5000
     networks:
       - sklearn
+
+  # frontend: used to build the frontend code
+  frontend-build:
+    image: sklearn-deploy-web-frontend-build:1.0
+    container_name: sklearn_web_frontend_build
+    build: ./frontend
+    command: yarn build
+    volumes:
+      - ./frontend:/app/src
 
 networks:
   sklearn:
