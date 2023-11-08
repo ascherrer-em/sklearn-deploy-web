@@ -12,7 +12,7 @@ build:
 up:
 	docker-compose -f docker-compose.yml up -d $(c)
 
-downn:
+down:
 	docker-compose -f docker-compose.yml down $(c)
 
 stop:

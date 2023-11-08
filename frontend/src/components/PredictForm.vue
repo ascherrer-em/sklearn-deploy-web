@@ -1,5 +1,5 @@
 <template>
-    <div class="row card bg-white py-3">
+    <div class="row bg-white py-3">
         <div class="py-3 text-center">
             <h2>Social network ad purchase prediction</h2>
             <p class="lead">
@@ -8,11 +8,11 @@
             </p>
         </div>
 
-        <div class="row m-5">
-            <div class="col-md-7 col-lg-8">
+        <div class="row gx-3">
+            <div class="col-md-7 col-lg-8 p-5">
                 <h4 class="mb-3">Features</h4>
                 <form class="needs-validation" novalidate="">
-                    <div class="row g-3">
+                    <div class="row">
                         <div class="col-sm-6">
                             <label for="age" class="form-label">Age</label>
                             <input
@@ -46,7 +46,7 @@
                     </button>
                 </form>
             </div>
-            <div class="col-md-5 col-lg-4">
+            <div class="col-md-5 col-lg-4 p-5">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Prediction</span>
                 </h4>

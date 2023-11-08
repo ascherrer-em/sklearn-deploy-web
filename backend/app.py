@@ -14,6 +14,12 @@ classifier = load("model.joblib")
 scaler = load("scaler.joblib")
 
 
+# health check route
+@app.route("/health", methods=["GET"])
+def health():
+    return ""
+
+
 # sanity check route
 @app.route("/ping", methods=["GET"])
 @app.route("/check", methods=["GET"])
