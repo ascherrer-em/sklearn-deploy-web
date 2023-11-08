@@ -1,7 +1,10 @@
 <template>
     <div class="py-5 text-center">
-        <h2>Get prediction!</h2>
-        <p class="lead">Complete the form with feature values and get the prediction!</p>
+        <h2>Social network ad purchase prediction</h2>
+        <p class="lead">
+            Complete the form with feature values and get the prediction on whether such customer is likely (or not) to
+            purchase a social media advertisment
+        </p>
     </div>
 
     <div class="row g-5">
@@ -11,18 +14,18 @@
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <label for="age" class="form-label">Age</label>
-                        <input type="text" class="form-control" id="age" placeholder="25" v-model="age" required="" />
+                        <input id="age" v-model="age" type="text" class="form-control" placeholder="25" required="" />
                         <div class="invalid-feedback">Valid value is required.</div>
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="salary" class="form-label">Salary</label>
+                        <label for="salary" class="form-label">Salary (yearly in k$)</label>
                         <input
+                            id="salary"
+                            v-model="salary"
                             type="text"
                             class="form-control"
-                            id="salary"
-                            placeholder=""
-                            v-model="salary"
+                            placeholder="50"
                             required=""
                         />
                         <div class="invalid-feedback">Valid value is required.</div>
@@ -37,6 +40,13 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-primary">Prediction</span>
             </h4>
+            <div v-if="predicted_class === 0" class="alert alert-danger" role="alert">
+                The customer will <b>likely NOT</b> buy an ad.
+            </div>
+            <div class="alert alert-success" role="alert" v-else-if="predicted_class === 1">
+                The customer will <b>likely</b> buy an ad.
+            </div>
+            <div class="alert alert-gray" role="alert" v-else>no prediction...</div>
         </div>
     </div>
 </template>
@@ -58,7 +68,7 @@ export default {
             this.predicted_class = null
             let payload = {
                 age: this.age,
-                salary: this.salary,
+                salary: this.salary * 1000,
             }
             this.$http
                 .post('/api/predict', payload, {
