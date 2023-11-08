@@ -10,14 +10,21 @@
             <form class="needs-validation" novalidate="">
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label for="feature1" class="form-label">Feature 1</label>
-                        <input type="text" class="form-control" id="feature1" placeholder="" value="" required="" />
+                        <label for="age" class="form-label">Age</label>
+                        <input type="text" class="form-control" id="age" placeholder="25" v-model="age" required="" />
                         <div class="invalid-feedback">Valid value is required.</div>
                     </div>
 
                     <div class="col-sm-6">
-                        <label for="feature1" class="form-label">Feature 2</label>
-                        <input type="text" class="form-control" id="feature1" placeholder="" value="" required="" />
+                        <label for="salary" class="form-label">Salary</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="salary"
+                            placeholder=""
+                            v-model="salary"
+                            required=""
+                        />
                         <div class="invalid-feedback">Valid value is required.</div>
                     </div>
                 </div>
@@ -38,12 +45,32 @@
 export default {
     name: 'PredictForm',
     data() {
-        return {}
+        return {
+            age: null,
+            salary: null,
+            predicted_class: null,
+        }
     },
     mounted() {},
     methods: {
         doSubmit() {
             console.log('Submit features to ML model')
+            this.predicted_class = null
+            let payload = {
+                age: this.age,
+                salary: this.salary,
+            }
+            this.$http
+                .post('/api/predict', payload, {
+                    'Content-Type': 'application/json',
+                })
+                .then((res) => {
+                    console.log(res)
+                    this.predicted_class = res.data.class
+                })
+                .catch((e) => {
+                    console.log(e)
+                })
         },
     },
 }
