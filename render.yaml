@@ -2,15 +2,19 @@ services:
   # Backend
   - type: web
     name: sklearn-predict-test-api
-    runtime: docker
+    runtime: python
     repo: https://github.com/ascherrer-em/sklearn-deploy-web.git # optional
     region: frankfurt # optional (defaults to oregon)
     plan: free # optional (defaults to starter instance type)
-    dockerfilePath: ./Dockerfile_render # optional
     branch: main # optional (defaults to master)
     rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    runCommand: gunicorn app:app
     numInstances: 1 # optional (defaults to 1)
     healthCheckPath: /health
+    envVars:
+     - key: PYTHON_VERSION
+       value: 3.11.0
   # A static site
   - type: web
     name: sklearn-predict-test-front
