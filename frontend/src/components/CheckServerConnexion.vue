@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container mt-3">
         <div class="alert alert-primary" role="alert">{{ msg }}</div>
     </div>
 </template>

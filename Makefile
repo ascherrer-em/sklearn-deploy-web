@@ -6,6 +6,8 @@ help:
 
 build:
 	docker-compose -f docker-compose.yml build $(c)
+	docker-compose -f docker-compose.yml run frontend-build yarn
+	docker-compose -f docker-compose.yml run frontend-build yarn build
 
 up:
 	docker-compose -f docker-compose.yml up -d $(c)
