@@ -1,4 +1,4 @@
-bind = "0.0.0.0:5000"
+bind = "0.0.0.0:10000"
 reload = True
 preload = True
 worker = 1
