@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Starting gunicorn"
+echo "Starting application"
 cd /usr/src/app
-ls 
+echo `ls /usr/src/app`
 /usr/local/bin/gunicorn -c gunicorn.conf.py app:app --reload
-echo "Done"
+echo "Done!"
