@@ -10,8 +10,11 @@ import './assets/main.css'
 
 const app = createApp(App)
 
-axios.defaults.baseURL = process.env.BACKEND_HOST
+let proto = import.meta.env.VITE_BACKEND_PROTO || 'http'
+let render = (import.meta.env.VITE_DEPLOY_RENDER || 'false') == 'true'
+let backend_host = import.meta.env.VITE_BACKEND_HOST || 'local'
 
+axios.defaults.baseURL = proto + '://' + backend_host + (render ? '.onrender.com' : '')
 app.use(router)
 app.use(VueAxios, axios)
 

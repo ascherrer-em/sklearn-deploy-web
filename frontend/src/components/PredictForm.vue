@@ -75,7 +75,7 @@ export default {
     mounted() {},
     methods: {
         doSubmit() {
-            console.log('Submit features to ML model')
+            console.log('Submit features to ML model', this.$http.defaults.baseURL)
             this.predicted_class = null
             let payload = {
                 age: this.age,

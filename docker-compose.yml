@@ -37,7 +37,10 @@ services:
     command: yarn build
     volumes:
       - ./frontend:/app/src
-
+    environment:
+      - VITE_DEPLOY_RENDER=false
+      - VITE_BACKEND_HOST=toto.com:1351
+      - VITE_BACKEND_PROTO=http
 networks:
   sklearn:
       driver: bridge

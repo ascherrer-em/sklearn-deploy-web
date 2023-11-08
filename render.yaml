@@ -25,13 +25,15 @@ services:
     staticPublishPath: ./dist
     pullRequestPreviewsEnabled: false # optional
     envVars:
-      - key: BACKEND_HOST
+      - key: VITE_BACKEND_HOST
         fromService:
           type: web
           name: sklearn-predict-test-api
           property: host 
-      - key: RENDER
+      - key: VITE_DEPLOY_RENDER
         value: true
+      - key: VITE_BACKEND_PROTO
+        value: https
     headers:
       - path: /*
         name: X-Frame-Options
