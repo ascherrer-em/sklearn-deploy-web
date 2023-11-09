@@ -1,6 +1,6 @@
 <template>
     <div class="container mt-3">
-        <div class="alert alert-primary" role="alert">{{ msg }}</div>
+        <div class="alert alert-{{ cls }}" role="alert">{{ msg }}</div>
     </div>
 </template>
 
@@ -9,7 +9,8 @@ export default {
     name: 'CheckServerConnexion',
     data() {
         return {
-            msg: 'Hello!',
+            msg: 'Checking server...',
+            cls: 'primary',
         }
     },
     mounted() {
@@ -17,13 +18,16 @@ export default {
     },
     methods: {
         getMessage() {
-            const path = '/api/ping'
+            const path = '/api/check'
+            this.cls = 'primary'
             this.$http
                 .get(path)
                 .then((res) => {
                     this.msg = res.data
                 })
                 .catch((error) => {
+                    this.msg = 'An error occured contacting the server.'
+                    this.cls = 'error'
                     console.error(error)
                 })
         },

@@ -108,11 +108,11 @@ export default {
                     console.log(res)
                     this.predicted_class = res.data.class
                 })
-                .catch((e) => {
-                    console.log(e)
+                .catch((error) => {
+                    console.log(error)
                     this.error = 'An error occured, backend server issue?'
                 })
-                .finaly(() => {
+                .finally(() => {
                     this.loading = false
                 })
         },
