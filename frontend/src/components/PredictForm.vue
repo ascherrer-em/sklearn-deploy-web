@@ -41,7 +41,12 @@
                     </div>
                     <hr class="my-4" />
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit" @click.prevent="doSubmit()">
+                    <button
+                        class="w-100 btn btn-primary btn-lg"
+                        type="submit"
+                        :disabled="loading === true"
+                        @click.prevent="doSubmit()"
+                    >
                         Predict
                     </button>
                 </form>
@@ -56,7 +61,13 @@
                 <div class="alert alert-success" role="alert" v-else-if="predicted_class === 1">
                     The customer will <b>likely</b> buy an ad.
                 </div>
-                <div class="alert alert-gray" role="alert" v-else>no prediction...</div>
+                <div class="alert alert-success" role="alert" v-else-if="error !== null">
+                    {{ error }}
+                </div>
+                <div class="alert alert-gray" role="alert" v-else>
+                    <span v-if="loading"> pending... </span>
+                    <span v-else> no prediction to display.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -68,15 +79,23 @@ export default {
     data() {
         return {
             age: null,
+            loading: false,
             salary: null,
+            error: null,
             predicted_class: null,
         }
     },
     mounted() {},
     methods: {
         doSubmit() {
+            if (this.loading) {
+                console.log('Disable double clicks...')
+                return
+            }
             console.log('Submit features to ML model at', this.$http.defaults.baseURL)
             this.predicted_class = null
+            this.loading = true
+            this.error = null
             let payload = {
                 age: this.age,
                 salary: this.salary * 1000,
@@ -91,6 +110,10 @@ export default {
                 })
                 .catch((e) => {
                     console.log(e)
+                    this.error = 'An error occured, backend server issue?'
+                })
+                .finaly(() => {
+                    this.loading = false
                 })
         },
     },
