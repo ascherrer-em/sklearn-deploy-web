@@ -1,5 +1,5 @@
 
-Containerized Flask/VueJS full stack web application for serving sklearn models.
+Simple containerized Flask/VueJS full stack web application for serving sklearn models.
 Demo application with a simple model.
 
 # Stack description
