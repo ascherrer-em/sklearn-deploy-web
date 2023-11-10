@@ -78,9 +78,9 @@ export default {
     name: 'PredictForm',
     data() {
         return {
-            age: null,
+            age: 30,
             loading: false,
-            salary: null,
+            salary: 100,
             error: null,
             predicted_class: null,
         }

@@ -1,5 +1,4 @@
 <template>
-    
     <HeaderBar></HeaderBar>
 
     <main class="flex-shrink-0">

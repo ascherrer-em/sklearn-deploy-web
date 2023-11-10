@@ -35,12 +35,20 @@ def ping_pong():
 @app.route("/api/predict", methods=["POST"])
 def predict():
     data = request.json
-    app.logger.debug(f"Prediction: {data}")
+    app.logger.debug(f"Start prediction for {data}")
     age = data.get("age")
     salary = data.get("salary")
-    result = classifier.predict(scaler.transform([[age, salary]]))
-    app.logger.info(f"Predicted class: {result}")
-    return jsonify({"class": int(result[0])})
+    if age and salary:
+        result = classifier.predict(scaler.transform([[age, salary]]))
+        app.logger.info(f"Predicted class: {result}")
+        return jsonify({"class": int(result[0])}), 200
+    else:
+        return (
+            jsonify(
+                {"error": "Wrong input data, age and salary variables are required."}
+            ),
+            400,
+        )
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-bind = "0.0.0.0:10000"
+bind = "0.0.0.0:10000"  # 10000 is the required port for render.com
 reload = True
 preload = True
 worker = 1
