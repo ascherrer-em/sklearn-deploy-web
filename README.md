@@ -19,7 +19,9 @@ Frontend is a [`VueJS 3`](https://vuejs.org/) application, using [`bootstrap 5`]
 
 Locally, in order to have both frontend and backend on the same domain, an nginx reverse proxy is configurred (running in a Docker container).
 
-Check out `nginx` directory for configuration.
+Locally, it will serve the static (built) web application code on `http://localhost:1351/` and proxy requests to `http://localhost:1351/api` to the backend.
+
+Check out `nginx.conf` in the `nginx` directory for configuration.
 
 # Usage
 
@@ -82,5 +84,7 @@ Check out `Makefile` to see all available options.
 You can supercharge this very simple application with:
 
  - support multiple models
+ - add some security (HTTP auth, proper login feature, etc.)
  - support training your model on new data
+ - create [`Dash`](https://dash.plotly.com/) web application for vizualisation.
  - ...
