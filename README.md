@@ -11,7 +11,6 @@ Backend is a REST/JSON API using [`Flask`](https://flask.palletsprojects.com/en/
  - `GET` `/api/check`: healthcheck service, just to check the backend is running
  - `POST` `/api/predict`: Get a prediction given feature data sent as JSON.
 
-
 ## Frontend
 
 Frontend is a [`VueJS 3`](https://vuejs.org/) application, using [`bootstrap 5`](https://getbootstrap.com/) HTML template. 
@@ -26,7 +25,7 @@ Check out `nginx` directory for configuration.
 
 1. Fork this repo
 
-## Export your sklearn model
+## Export your scikit-learn model
 
 1. In your Jupyter notebook, export your model (and feature scaling model is applicable) as `joblib` file
     Here is a snippet of how to do that:
@@ -35,7 +34,11 @@ Check out `nginx` directory for configuration.
     dump(classifier, 'model.joblib') 
     dump(scaler, 'scaler.joblib') 
     ```
-1. Copy your model and scaler `joblib` files in the `backend` directory
+
+> **Warning!**
+> **The scikit-learn version you use to save your model should match the one in the backend!**: Adjust the version in the `requirements.txt` file if needed.
+
+1. Copy your `joblib` files in the `backend` directory
 
 ## Adjust backend code
 
